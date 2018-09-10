@@ -91,10 +91,10 @@ bindsym $mod+a focus parent
 #bindsym $mod+d focus child
 
 set $workspace1 "1: Terminals "
-set $workspace2 "2: Browser "
-set $workspace3 "3: Chat "
+set $workspace2 "2: Browser "
+set $workspace3 "3: Chat "
 set $workspace4 "4: Python "
-set $workspace5 "5: Postman "
+set $workspace5 "5: Postman "
 set $workspace6 "6: Mail "
 set $workspace7 "7: Sensors "
 
@@ -169,7 +169,7 @@ bindsym $mod+r mode "resize"
 
 set $bg-color            #2f343f
 set $inactive-bg-color   #2f343f
-set $text-color          #f3f4f5
+set $text-color          #fafafa
 set $inactive-text-color #676E7D
 set $urgent-bg-color     #E53935
 
@@ -185,6 +185,8 @@ client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color      
 
 bar {
         status_command i3blocks -c  ~/.config/i3/i3blocks.conf
+		# font pango:DejaVu Sans Mono 11, Awesome 10
+		font pango:Hack Nerd Font 11, Awesome 10
 		colors {
 			background $bg-color
 	    	separator #757575
@@ -249,3 +251,4 @@ exec "setxkbmap -option 'grp:alt_shift_toggle' -layout us,gr -variant ,,qwerty"
 exec "export QT_STYLE_OVERRIDE=gtk3; export QT_QPA_PLATFORMTHEME=gtk2; psensor"
 exec "nm-applet"
 exec "minetime"
+exec --no-startup-id /usr/bin/dropbox start -i # Dropbox
