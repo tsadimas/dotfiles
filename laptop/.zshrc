@@ -65,6 +65,8 @@ plugins=(
   fzf-zsh
   docker
   zsh-syntax-highlighting
+  alias-tips
+  zsh-autosuggestions
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -143,3 +145,24 @@ alias ddr='docker-compose down; sudo service docker restart'
 alias viber='bash -c "QT_SCALE_FACTOR=0.5 /opt/viber/Viber" %u'
 alias lc='colorls -lA --sd'
 alias cl='colorls'
+
+
+start-ssh-agent() {
+sshfile=~/.ssh-agent-environment
+#
+if [ -n "$SSH_AUTH_SOCK" ]; then
+  ssh-add -l &>/dev/null
+  [[ $? != 2 ]] && unset sshfile && return 0
+fi
+#
+if [ -e "$sshfile" ]; then
+  . $sshfile &>/dev/null
+  ssh-add -l &>/dev/null
+  [[ $? != 2 ]] && unset sshfile && return 0
+fi
+#
+ssh-agent -s > $sshfile && . $sshfile &>/dev/null
+unset sshfile
+}
+
+start-ssh-agent &>/dev/null
